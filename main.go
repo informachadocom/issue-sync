@@ -1,6 +1,6 @@
 package main
 
-import "github.com/coreos/issue-sync/cmd"
+import "github.com/informachadocom/issue-sync/cmd"
 
 func main() {
 	cmd.Execute()

@@ -4,9 +4,9 @@ import (
 	"time"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/coreos/issue-sync/cfg"
-	"github.com/coreos/issue-sync/lib"
-	"github.com/coreos/issue-sync/lib/clients"
+	"github.com/informachadocom/issue-sync/cfg"
+	"github.com/informachadocom/issue-sync/lib"
+	"github.com/informachadocom/issue-sync/lib/clients"
 	"github.com/spf13/cobra"
 )
 

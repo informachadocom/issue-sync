@@ -12,8 +12,8 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/coreos/issue-sync/cfg"
 	"github.com/dghubble/oauth1"
+	"github.com/informachadocom/issue-sync/cfg"
 )
 
 // newJIRAHTTPClient obtains an access token (either from configuration

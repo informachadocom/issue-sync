@@ -12,8 +12,8 @@ import (
 
 	"github.com/andygrunwald/go-jira"
 	"github.com/cenkalti/backoff"
-	"github.com/coreos/issue-sync/cfg"
 	"github.com/google/go-github/github"
+	"github.com/informachadocom/issue-sync/cfg"
 )
 
 // commentDateFormat is the format used in the headers of JIRA comments.

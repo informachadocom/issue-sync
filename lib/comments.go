@@ -5,9 +5,9 @@ import (
 	"strconv"
 
 	"github.com/andygrunwald/go-jira"
-	"github.com/coreos/issue-sync/cfg"
-	"github.com/coreos/issue-sync/lib/clients"
 	"github.com/google/go-github/github"
+	"github.com/informachadocom/issue-sync/cfg"
+	"github.com/informachadocom/issue-sync/lib/clients"
 )
 
 // jCommentRegex matches a generated JIRA comment. It has matching groups to retrieve the
