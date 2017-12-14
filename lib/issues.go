@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"strconv"
 	"strings"
 	"time"
 
@@ -37,10 +38,31 @@ func CompareIssues(config cfg.Config, ghClient clients.GitHubClient, jiraClient 
 		ids[i] = v.GetID()
 	}
 
-	jiraIssues, err := jiraClient.ListIssues(ids)
-	if err != nil {
-		return err
+	//Ricardo 2017.12.14. Add pagination. 50 results per call to Jira
+	const itemsPerPage = 50
+	cntGitHubItems := len(ids)
+	var jiraIssues []jira.Issue
+
+	log.Debugf(strconv.Itoa(cntGitHubItems) + " issues in GitHub")
+
+	for i := 0; i < cntGitHubItems; i += itemsPerPage {
+
+		toSlice := i + itemsPerPage
+		if toSlice > cntGitHubItems {
+			toSlice = cntGitHubItems
+		}
+
+		log.Debugf("Fetching Jira Issues " + strconv.Itoa(i) + " to " + strconv.Itoa(toSlice-1) + " (" + strconv.Itoa(toSlice-i) + " items)")
+		sliceIds := ids[i:toSlice]
+
+		jiraIssuesPart, err := jiraClient.ListIssues(sliceIds)
+		if err != nil {
+			return err
+		}
+
+		jiraIssues = append(jiraIssues, jiraIssuesPart...)
 	}
+	//END : Ricardo 2017.12.14. Add pagination. 50 results per call to Jira
 
 	log.Debug("Collected all JIRA issues")
 

@@ -45,15 +45,24 @@ var RootCmd = &cobra.Command{
 			if err := lib.CompareIssues(config, ghClient, jiraClient); err != nil {
 				log.Error(err)
 			}
-			if !config.IsDryRun() {
-				if err := config.SaveConfig(); err != nil {
-					log.Error(err)
+
+			//Ricardo 2017.12.14 : Skip config save. It is bugged anyway
+			/*
+				if !config.IsDryRun() {
+					if err := config.SaveConfig(); err != nil {
+						log.Error(err)
+					}
 				}
-			}
+			*/
+
 			if !config.IsDaemon() {
 				return nil
 			}
-			<-time.After(config.GetDaemonPeriod())
+
+			//Ricardo 2017.12.13 : Deactivate the daemon rerun
+			log.Debugf("All done. Exiting.")
+			return nil
+			//<-time.After(config.GetDaemonPeriod())
 		}
 	},
 }
