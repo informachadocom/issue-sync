@@ -8,8 +8,5 @@ WORKDIR /opt/issue-sync
 RUN apk update --no-cache && apk add ca-certificates
 
 COPY issue-sync /opt/issue-sync/issue-sync
-COPY issue-sync.sh /opt/issue-sync/issue-sync.sh
 
-RUN chmod +x issue-sync.sh
-
-ENTRYPOINT ["./issue-sync.sh"]
+ENTRYPOINT ["./issue-sync"]
